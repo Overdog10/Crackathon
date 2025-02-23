@@ -40,7 +40,7 @@ Crackathon compares two text files and assigns scores based on difficulty level:
 
 ### **Example Usage:**  
 ```bash
-./crackathon -m medium1.txt hashes1_medium_with_password
+./crackathon -m easy.txt easy_solutions.txt
 ```
 This compares `easy.txt` and `easy_solutions.txt`, giving **0.5 points** per matching line.
 
