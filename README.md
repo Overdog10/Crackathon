@@ -7,6 +7,8 @@
 ✅ Supports four difficulty levels: Easy, Medium, Hard, Insane  
 ✅ Simple command-line usage  
 
+
+📢 AUTHORED BY: K. SAI KRISHNA 🎉
 ---
 
 ## **📥 Installation**  
