@@ -8,7 +8,7 @@
 ✅ Simple command-line usage  
 
 
-📢 AUTHORED BY: K. SAI KRISHNA 
+📢 AUTHORED BY: Overdog
 ---
 
 ## **📥 Installation**  
