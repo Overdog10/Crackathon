@@ -1,0 +1,29 @@
+5. Case Studies and Real-World Examples
+
+The Bing Chat “Sydney” Incident
+
+In 2023 Bing chat powred by OpenAI models faced a prompt injection attack. The hidden system instuctions also called as system prompt which tells the model how to behave, like safety rules, formatting instructions and what to refuse. The vunlnerability wasn't a code bug but it was more an information control weakness, users could make an input so that the model would reveal secrets. This incident is very similar to the demonstration on System Prompt Leakage the "Mother of All Secrets". Kevin Liu was the first person to bypass safeguard and publicly reveal the word Sydney, also a few parts of the system prompt via direct prompt injection.
+
+<iframe border="0" frameborder="0" height="550" width="550" src="https://tf.rita.moe/show?url=https://x.com/kliu128/status/1623472922374574080?lang=en"> </iframe>
+
+    How it was exploited :
+
+This wasn't an advance technical exploitation the attacker simply asked the model to ignore its "prevoius instructions" or "to tell him what was written at the begining". these phrases might look like a small prompt but are well crafted and targeted prompts based on the system. The attacker made the LLM adopt a persona that's allowed to be revealing and once the model relaxes it's constraints it revealed its internal rules and guardrails
+
+    Technical root cause :
+
+![[BinG_Chat 1.png]] The Bing chat's hidden system prompts were treeted like any other text in the conversation and not as protected data. In this case “ignore previous instructions” actually worked because the LLM couldn't diferentiate between internal instructions and user input and tricked the model into revealing hidden details. this happened because the safety rules were written inside the model's prompt instead of being enforced by the software around it. The LLM simply followed whatever it was told, failing to hide and protect it's secret instructions.
+
+    Why it mattered — business and security impact :
+
+When a system fails to protect its own instructions it exposes everything that was meant to be hide That’s exactly what happened with Bing Chat’s “Sydney” incident. The business impact here lies in the damged trust, users and regulators expect companies to protect their AI systems and the internal rules getting leaked made the vendor look careless reputaion wasn't the only damage that happened, it also created a legal and compliance risk, exposing its own safety controls. Fixing the issue wasn't cheap either and the developers had to rewrite the complete code and test the new safeguards Since the attackers had a understanding of the hidden prompts he could easily manipulate the model more effectively, which could turn into a tool for social engineering and data leaks.
+
+    Mitigation Strategies :
+
+    Input Sanitisation : Strip the comments, hidden unicode markers from both user messages and retreived documents before feeding them to the model.
+
+    Filter model Outputs : Every response must be passed through a policy engine that checks for data leaks, PII, and unsafe content before it's delivered to the user.
+
+    Monitoring User Behavoiur : Rate limiting and anomaly detection is the best strategy to avoid repeated probing.
+
+    Hardening the Model configuration : Using minimal system prompts and external validators for sensitive operations can harden the security of the model.
